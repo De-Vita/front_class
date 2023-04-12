@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/bootstrap.css">
+    <script src="../js/bootstrap.bundle.min.js"></script>
+</head>
+<style>
+    #phrase {
+        color: red;
+    }
+    div {
+        width: 70%;
+        margin: 20px auto;
+    }   
+</style>
+<body>
+    <div>
+        <h6>이메일</h6> 
+        <input type="text" id="email" onkeyup="fun1()" class="form-control">
+        <p id="phrase"></p>
+    </div>
+</body>
+<script>
+    const fun1 = () => {
+        const input = document.getElementById("email").value;
+        const phrase = document.getElementById("phrase");
+        if(input === "") {
+            phrase.innerHTML = "필수입력입니다.";   
+        }else if(input.length <5 || input.length > 20)  {
+            phrase.innerHTML = "5~20자로 입력해주세요.";
+        }else {
+            phrase.innerHTML = "좋아요."
+            phrase.style.color = "green";
+        }
+        if(phrase.style.color === "green" && (input === "" || input.length < 5 || input.length > 20)) {
+        phrase.style.color = "red";
+    }
+    }
+</script>
+</html>
