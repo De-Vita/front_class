@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+
+</style>
+<body>
+    <div>이메일</div> 
+    <input type="text" id="email" onkeyup="fun1()">
+    <div id="phrase"></div>
+</body>
+<script>
+    const fun1 = () => {
+        const input = document.getElementById("email").value;
+        const phrase = document.getElementById("phrase");
+        if(input === "") {
+            phrase.innerHTML = "필수입력입니다.";
+            phrase.style.color = "red";
+        }else if(input.length <5 || input.length > 20)  {
+            phrase.innerHTML = "5~20자로 입력해주세요.";
+            phrase.style.color = "red";
+        }else {
+            phrase.innerHTML = "좋아요."
+            phrase.style.color = "green";
+        }
+    }
+</script>
+</html>
