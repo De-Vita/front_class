@@ -6,6 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Membership</title>
     <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+    <style>
+        label {
+            display: block;
+        }
+    </style>
 </head>
 <body>
   <form id="signup_form">
@@ -16,10 +21,10 @@
     <label for="member-Password">비밀번호</label>
     <input type="password" id="member-Password" name="memberPassword" onblur="password_check()">
     <h6 id="password-check-result"></h6>
-    <button onclick="change_input_type(event)">비밀번호 보기</button>
+    <button onclick="change_input_type(event)" style="display: block">비밀번호 보기</button>
 
     <label for="password-Confirm">비밀번호 확인</label>
-    <input type="text" id="password-Confirm" name="passwordConfirm" onblur="password_confirm()">
+    <input type="password" id="password-Confirm" name="passwordConfirm" onblur="password_confirm()">
     <h6 id="password-confirm-result"></h6>
     
     <label for="member-Name">이름</label>
@@ -27,7 +32,7 @@
     <h6 id="name-check-result"></h6>
 
     <label for="member-Mobile">전화번호</label>
-    <select name="member-Telecom" id="memberTelecom" style="display: inline-block">;
+    <select name="member-Telecom" id="memberTelecom" style="display: inline-block;">;
         <option value="SKT">SKT</option>
         <option value="KT">KT</option>
         <option value="LG">LG</option>
@@ -40,14 +45,14 @@
     <input type="text" id="member-Email" name="memberEmail" onblur="email_check()"> <span style="display: inline-block;">@</span>
     <input type="text" id="email-domain" name="emailDomain">
     <select id="email-domain-select" onchange="domain_select()">
-        <option value="직접입력">직접입력</option>
+        <option value="">직접입력</option>
         <option value="naver.com">naver.com</option>
         <option value="daum.net">daum.net</option>
         <option value="gmail.com">gmail.com</option>
     </select>
 </div>
     
-
+    <div>
     <label for="member-Gender">성별</label>
         <div style="display: inline-block;">
             남: <input type="radio" name="gender" value="male" style="display: inline-block;"> 
@@ -55,13 +60,13 @@
         <div style="display: inline-block;">
             여: <input type="radio" name="gender" value="female" style="display: inline-block;">
         </div>
-        
+    </div> 
     <label for="member-Address">주소</label>
     <input type="text" id="sample6_postcode" placeholder="우편번호">
     <input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기"><br>
     <input type="text" id="sample6_address" placeholder="주소"><br>
     <input type="text" id="sample6_detailAddress" placeholder="상세주소">
-    <input type="text" id="sample6_extraAddress" placeholder="참고항목">
+    <input type="text" id="sample6_extraAddress" placeholder="참고항목" style="display: block;">
     
     <button>가입하기</button>
 
@@ -151,11 +156,14 @@
   const change_input_type = () => {
         event.preventDefault();
         const passwordInput = document.getElementById("member-Password");
+        const passwordReInput = document.getElementById("password-Confirm");
         if (passwordInput.type === "password") {
         passwordInput.type = "text";
+        passwordReInput.type = "text";
         event.target.innerText = "비밀번호 숨기기"
         } else {
         passwordInput.type = "password";
+        passwordReInput.type = "password";
         event.target.innerText = "비밀번호 보기"
         }
         return false;
