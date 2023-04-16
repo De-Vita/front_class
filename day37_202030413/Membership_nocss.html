@@ -6,13 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Membership</title>
     <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-    <link rel="stylesheet" href="../css/bootstrap.css">
-    <script src="../js/bootstrap.bundle.min.js"></script>
-    <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.18/dist/css/bootstrap-select.min.css">
-
-    <!-- Latest compiled and minified JavaScript 한국어 번역 파일 -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.18/js/i18n/defaults-ko_KR.min.js"></script>
+    <!-- <link rel="stylesheet" href="../css/bootstrap.css">
+    <script src="../js/bootstrap.bundle.min.js"></script> -->
     <style>
         label {
             display: block;
@@ -23,77 +18,67 @@
     </style>
 </head>
 <body>
-    <div class="container text-center mt-5">
-        <h2>회원가입</h2>
-    </div>
-    <form action="#" id="signup_form" method="post" onsubmit="return signup_check()" class="container">
+  <form action="#" id="signup_form" method="post" onsubmit="return signup_check()">
     <label for="member-UserName">회원계정</label>
-    <input type="text" id="member-UserName" name="memberUserName" onblur="id_check()" class="form-control">
+    <input type="text" id="member-UserName" name="memberUserName" onblur="id_check()">
     <h6 id="id-check-result"></h6>
 
     <label for="member-Password">비밀번호</label>
-    <input type="password" id="member-Password" name="memberPassword" onblur="password_check()" class="form-control">
+    <input type="password" id="member-Password" name="memberPassword" onblur="password_check()">
     <h6 id="password-check-result"></h6>
-    <button onclick="change_input_type(event)" style="display: block" class="btn btn-primary">비밀번호 보기</button>
+    <button onclick="change_input_type(event)" style="display: block">비밀번호 보기</button>
 
     <label for="password-Confirm">비밀번호 확인</label>
-    <input type="password" id="password-Confirm" name="passwordConfirm" onblur="password_confirm()" class="form-control">
+    <input type="password" id="password-Confirm" name="passwordConfirm" onblur="password_confirm()">
     <h6 id="password-confirm-result"></h6>
     
     <label for="member-Name">이름</label>
-    <input type="text" id="member-Name" name="memberName" onblur="name_check()" class="form-control">
+    <input type="text" id="member-Name" name="memberName" onblur="name_check()">
     <h6 id="name-check-result"></h6>
 
     <label for="member-Mobile">전화번호</label>
-    <select name="member-Telecom" id="memberTelecom" style="display: inline-block;" class="form-select">;
+    <select name="member-Telecom" id="memberTelecom" style="display: inline-block;">;
         <option value="SKT">SKT</option>
         <option value="KT">KT</option>
         <option value="LG">LG</option>
         <option value="MVNO">MVNO</option>
     </select>
-    <input type="text" id="member-Mobile" name="memberMobile" onblur="mobile_check()" class="form-control">
-    <button id="get-code-btn" onclick="get_code()" disabled class="btn btn-primary">인증번호 받기</button>
+    <input type="text" id="member-Mobile" name="memberMobile" onblur="mobile_check()">
+    <button id="get-code-btn" onclick="get_code()" disabled>인증번호 받기</button>
     <h6 id="mobile-check-result"></h6>
-    <input type="text" id="input-code" name="inputCode" class="form-control">
-    <button id="code-check-btn" onclick="code_check()" class="btn btn-primary">인증번호 확인</button>
+    <input type="text" id="input-code" name="inputCode">
+    <button id="code-check-btn" onclick="code_check()">인증번호 확인</button>
     <h6 id="code-check-result"></h6>
-    <div id="email-form">
+<div id="email-form">
     <label for="member-Email">이메일</label>
-    <div class="row">
-    <!-- <div class="col"><input type="text" id="member-Email" name="memberEmail" onblur="email_check()" class="form-control"></div> -->
-    <div class="input-group">
-        <div class="col"><input type="text" id="member-Email" name="memberEmail" onblur="email_check()" class="form-control"></div>
-        <div class="input-group-prepend">
-            <div class="col"><div class="input-group-text">@</div></div>
-        </div>
-        <div class="col"><input type="text" id="email-domain" name="emailDomain" class="form-control">
-    </div>
-    <select id="email-domain-select" onchange="domain_select()" class="form-select">        
+    <input type="text" id="member-Email" name="memberEmail" onblur="email_check()"> <span style="display: inline-block;">@</span>
+    <input type="text" id="email-domain" name="emailDomain">
+    <select id="email-domain-select" onchange="domain_select()">
         <option value="">직접입력</option>
         <option value="naver.com">naver.com</option>
         <option value="daum.net">daum.net</option>
         <option value="gmail.com">gmail.com</option>
     </select>
-    </div>
-    </div>
+</div>
+    
     <div>
     <label for="member-Gender">성별</label>
-        <div style="display: inline-block;" class="form-check">
+        <div style="display: inline-block;">
             남: <input type="radio" name="gender" value="male" style="display: inline-block;"> 
         </div>
-        <div style="display: inline-block;" class="form-check">
+        <div style="display: inline-block;">
             여: <input type="radio" name="gender" value="female" style="display: inline-block;">
         </div>
     </div>
     <h6 id="gender-check-result"></h6> 
     <label for="member-Address" style="display: block;">주소</label>
-    <input type="text" id="sample6_postcode" placeholder="우편번호" class="form-control">
-    <input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기" class="btn btn-primary"><br>
-    <input type="text" id="sample6_address" placeholder="주소" class="form-control"><br>
-    <input type="text" id="sample6_detailAddress" placeholder="상세주소" class="form-control">
-    <input type="text" id="sample6_extraAddress" placeholder="참고항목" style="display: block;" class="form-control">
+    <input type="text" id="sample6_postcode" placeholder="우편번호">
+    <input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기"><br>
+    <input type="text" id="sample6_address" placeholder="주소"><br>
+    <input type="text" id="sample6_detailAddress" placeholder="상세주소">
+    <input type="text" id="sample6_extraAddress" placeholder="참고항목" style="display: block;">
     
-    <input type="submit" value="가입하기" class="btn btn-primary">
+    <input type="submit" value="가입하기">
 
     </form>
 </body>
@@ -140,11 +125,7 @@
         const memberPassword = document.getElementById("member-Password").value;
         const memberPasswordConfirm = document.getElementById("password-Confirm").value;
         const checkResult = document.getElementById("password-confirm-result");
-        if(memberPassword == 0) {
-            checkResult.innerHTML = "필수 입력 항목입니다";
-            checkResult.style.color = "red";
-            return false;
-        }else if (memberPassword == memberPasswordConfirm) {                                     
+        if(memberPassword == memberPasswordConfirm) {                                     
             checkResult.innerHTML = "일치합니다";
             checkResult.style.color = "green";
             return true;            
@@ -153,7 +134,6 @@
             checkResult.style.color = "red";
             return false;   
         }
-        
     }
 
     const name_check = () => {
@@ -342,6 +322,7 @@
         }
         
     }
+
 
 function sample6_execDaumPostcode() {
         new daum.Postcode({
